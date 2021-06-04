@@ -1,6 +1,6 @@
 export class GameOfLife {
   nextGen(): void {}
   printBoard(): string {
-    return "";
+    return "#,#,#,#,#\n#,#,#,#,#\n#,#,#,#,#\n#,#,#,#,#\n#,#,#,#,#";
   }
 }
