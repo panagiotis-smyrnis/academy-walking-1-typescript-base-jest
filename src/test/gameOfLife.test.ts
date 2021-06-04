@@ -16,24 +16,6 @@ describe("Game Of Life", () => {
     );
   });
 
-<<<<<<< HEAD
-  it("should initialise an board with one true of 5x5", () => {
-    const gameOfLife = new GameOfLife([
-      [true, false, false, false, false],
-      [false, false, false, false, false],
-      [false, false, false, false, false],
-      [false, false, false, false, false],
-      [false, false, false, false, false],
-    ]);
-
-    gameOfLife.nextGen();
-    expect(gameOfLife.printBoard()).toBe(
-      "+,-,-,-,-\n-,-,-,-,-\n-,-,-,-,-\n-,-,-,-,-\n-,-,-,-,-"
-    );
-  });
-
-=======
->>>>>>> mob/game-of-life
   it("Any live cell with two or three live neighbours should live", () => {
     const gameOfLife = new GameOfLife([
       [true, true, false, false, false],
