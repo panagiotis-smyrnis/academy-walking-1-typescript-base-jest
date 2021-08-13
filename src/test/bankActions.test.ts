@@ -43,4 +43,22 @@ describe("Bank Service test", () => {
       "Date || Amount || Balance\n10/01/2012 || 1000 || 1000\n15/01/2012 || 2000 || 3000"
     );
   });
+
+  it("should print two deposits and a withdrawl ", async () => {
+    const printer = new StringPrinter();
+    const spy = jest.spyOn(printer, "print");
+
+    const bankService = new BankService(printer);
+    Date.now = jest.fn(() => new Date(Date.UTC(2012, 1, 10)).valueOf());
+    bankService.deposit(1000);
+    Date.now = jest.fn(() => new Date(Date.UTC(2012, 1, 15)).valueOf());
+    bankService.deposit(2000);
+    Date.now = jest.fn(() => new Date(Date.UTC(2012, 1, 20)).valueOf());
+    bankService.withdraw(500);
+    bankService.printStatement();
+    expect(spy).toHaveBeenCalled();
+    expect(printer.printBuffer).toBe(
+        "Date || Amount || Balance\n10/01/2012 || 1000 || 1000\n15/01/2012 || 2000 || 3000\n20/01/2012 || -500 || 2500"
+    );
+  });
 });

@@ -27,6 +27,7 @@ export class StringPrinter implements Printer {
 
 export class BankService implements AccountService {
   printer: Printer;
+  private balance: number = 0;
   private transactions: Transaction[] = [];
 
   constructor(printer: Printer) {
@@ -34,10 +35,11 @@ export class BankService implements AccountService {
   }
 
   deposit(amount: number): void {
+    this.balance += amount
     const transaction: Transaction = {
       date: new Date(Date.now()),
       amount,
-      balance: amount,
+      balance: this.balance,
     };
     this.transactions.push(transaction);
   }
