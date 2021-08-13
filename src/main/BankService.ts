@@ -35,7 +35,7 @@ export class BankService implements AccountService {
   }
 
   deposit(amount: number): void {
-    this.balance += amount
+    this.balance += amount;
     const transaction: Transaction = {
       date: new Date(Date.now()),
       amount,
@@ -44,7 +44,13 @@ export class BankService implements AccountService {
     this.transactions.push(transaction);
   }
   withdraw(amount: number): void {
-    throw new Error("Method not implemented.");
+    this.balance -= amount;
+    const transaction: Transaction = {
+      date: new Date(Date.now()),
+      amount: amount * -1,
+      balance: this.balance,
+    };
+    this.transactions.push(transaction);
   }
   printStatement(): void {
     this.printer.print(this.transactions);
